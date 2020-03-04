@@ -27,6 +27,7 @@ containers=`lxc list -c ns --format csv | grep RUNNING | cut -d, -f1`
 
 for nm in $containers
 do
+	echo "### $nm"
 	echo -n "  $nm ... " | tee -a $LOGFILE
 	lxc file push $script $nm$tmpscript
 	lxc exec $nm -- /bin/bash $tmpscript
